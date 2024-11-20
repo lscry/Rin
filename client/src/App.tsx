@@ -188,45 +188,6 @@ function RouteMe({ path, children, headerComponent, paddingClassName }:
   )
 }
 
-import { useEffect, useState } from 'react';
-
-function App() {
-  const [loadLive2D, setLoadLive2D] = useState(false);
-
-  useEffect(() => {
-    if (loadLive2D) {
-      const script = document.createElement('script');
-      script.src = "https://api.obdo.cc/live2d.js";
-      script.async = true;
-      script.onload = () => {
-        if (window.loadlive2d) {
-          window.loadlive2d("live2d", "https://api.obdo.cc/api/live2d/model/tororo");
-        }
-      };
-      document.body.appendChild(script);
-
-      return () => {
-        document.body.removeChild(script);
-      };
-    }
-  }, [loadLive2D]);
-
-  return (
-    <>
-      {/* 按钮触发加载 Live2D */}
-      <button onClick={() => setLoadLive2D(true)}>加载 Live2D</button>
-      <div id="live2d-container" style={{
-        position: 'fixed',
-        bottom: '0px',
-        right: '0px',
-        zIndex: 1000,
-      }}>
-        <canvas id="live2d" width="300" height="300"></canvas>
-      </div>
-    </>
-  );
-}
-
 function RouteWithIndex({ path, children }:
   { path: PathPattern, children: (params: DefaultParams, TOC: () => JSX.Element, clean: (id: string) => void) => React.ReactNode }) {
   const { TOC, cleanup } = useTableOfContents(".toc-content");
