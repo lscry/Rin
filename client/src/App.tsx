@@ -188,6 +188,7 @@ function RouteMe({ path, children, headerComponent, paddingClassName }:
   )
 }
 
+
 function RouteWithIndex({ path, children }:
   { path: PathPattern, children: (params: DefaultParams, TOC: () => JSX.Element, clean: (id: string) => void) => React.ReactNode }) {
   const { TOC, cleanup } = useTableOfContents(".toc-content");
